@@ -17,8 +17,4 @@ Note
 ----
 Source file is not very well organised.
 
-It is not actively developed. Bugs are fixed though.
-
-License
--------
-It is released under WTFPL (if you must know).
+It is not actively developed.
