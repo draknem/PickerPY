@@ -2,10 +2,10 @@
 ## Project page http://shouravbr.com/PickerPY
 ## PickerPY version 1
 
-from Tkinter import *
-import tkFileDialog
-import tkMessageBox
-import ttk
+from tkinter import *
+from tkinter import filedialog as tkFileDialog
+from tkinter import messagebox as tkMessageBox
+from tkinter import ttk
 import subprocess
 from locale import getpreferredencoding
 from datetime import datetime
@@ -58,13 +58,14 @@ class tWorker(threading.Thread):
         #print(self.pw)
     def run(self):
         global a
-        cmd = "7za t \"" + a + "\" -p\"" + self.pw + "\""
+        cmd = "7za.exe t \"" + a + "\" -p\"" + self.pw + "\""
         cmd = toUnicode(cmd)
         #cmd = "7za t \"" + a + "\" -p\"" + self.pw + "\""
         #cmd = "chcp 10000 && "+ cmd
         # print cmd
         #rc = subprocess.Popen(cmd.encode('latin-1'), stdout=subprocess.PIPE, shell=True)
-        cmd = prefEncode(cmd)
+        #cmd = prefEncode(cmd)
+        #print(cmd)
         rc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
         self.rc = rc.wait()
 # end of CLASS
@@ -76,7 +77,7 @@ def toUnicode(string):
     toReturn = '';
 
     for char in string:
-        toReturn += unichr(ord(char));
+        toReturn += chr(ord(char));
 
     return toReturn
 
@@ -464,7 +465,7 @@ ttk.Label(nf[2], text='Suffix').grid(column=2, row=1)
 ttk.Label(nf[2], text='Thread').grid(column=3, row=1)
 ttk.Entry(nf[2], textvariable=pre, width=12).grid(column=1, row=2)
 ttk.Entry(nf[2], textvariable=suf, width=12).grid(column=2, row=2)
-Spinbox(nf[2], textvariable=t, from_=1, to=5, width=3).grid(column=3, row=2)
+Spinbox(nf[2], textvariable=t, from_=1, to=48, width=3).grid(column=3, row=2)
 ttk.Label(nf[2], text="Min. Length:").grid(column=1, row=3)
 Spinbox(nf[2], textvariable=mn, from_=1, to=32, width=3).grid(column=2, row=3)
 btLoad = ttk.Button(nf[2],text="Load", command=load)
